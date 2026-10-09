@@ -162,8 +162,8 @@ veille automatique pendant une pause, mais pas celle du capot.
 
 ## Contribuer
 
-Bugs, idées et contributions sont les bienvenus. Pour compiler l'app ou comprendre son architecture,
-voir [CONTRIBUTING.md](CONTRIBUTING.md).
+Bugs, idées et contributions sont les bienvenus. Pour compiler l'app, comprendre son architecture ou
+publier une version, voir [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
