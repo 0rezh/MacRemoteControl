@@ -8,3 +8,7 @@ mac/.swiftpm/
 .vscode/
 .idea/
 .DS_Store
+
+# Outils du mainteneur (build, release, icônes, captures) : gardés en local
+/Makefile
+/.github/scripts/

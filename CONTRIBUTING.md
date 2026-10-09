@@ -20,45 +20,27 @@ Bonnes premières contributions : ajouter les raccourcis d'un lecteur vidéo dan
 - macOS 14 Sonoma ou plus récent
 - Xcode 16 ou plus récent (Swift 6)
 - Node.js 20 ou plus récent, avec npm
-- Optionnel : un certificat « Apple Development ». Sans lui, l'app est signée ad hoc et macOS redemande
-  l'autorisation Accessibilité à chaque build.
 
 ## Compiler et lancer
 
 ```bash
 git clone https://github.com/0rezh/MacRemoteControl.git
 cd MacRemoteControl
-make run
+
+# Interface du téléphone (export statique dans web/out)
+cd web && npm ci && npm run build
+
+# App Mac : elle sert l'interface de ../web/out
+cd ../mac && swift run
 ```
 
-`make` construit l'interface web (`web/out`), compile l'app Swift, assemble `build/Mac Remote Control.app`
-et la signe ; `make run` la lance ensuite.
-
-| Commande           | Rôle                                                                    |
-|--------------------|-------------------------------------------------------------------------|
-| `make`             | Compiler l'app (développement)                                          |
-| `make run`         | Compiler puis lancer l'app                                              |
-| `make release`     | Installeur signé et notarisé (`dist/MacRemoteControl-<version>.dmg`)   |
-| `make icons`       | Régénérer les icônes de l'app et de la page web                         |
-| `make screenshots` | Régénérer les captures du README (l'app doit tourner)                   |
-| `make clean`       | Supprimer les builds                                                    |
-
-## Développer
-
-```bash
-# Interface du téléphone avec rechargement à chaud, sur http://localhost:3000
-cd web && npm run dev
-
-# App Mac sans repackager (elle sert l'interface de ../web/out)
-cd mac && swift run
-```
-
-- En développement, l'interface se connecte à l'app Mac sur le port 8765 (`web/.env.development`).
-  Ouvrez `http://localhost:3000/#t=<jeton>` : le jeton est à la fin du lien copié depuis le menu, ou
+- Lancée avec `swift run`, l'app hérite des autorisations du Terminal : c'est au Terminal qu'il faut
+  donner l'accès Accessibilité (*Réglages Système › Confidentialité et sécurité › Accessibilité*).
+- Pour travailler sur l'interface avec rechargement à chaud : `cd web && npm run dev`, puis ouvrez
+  `http://localhost:3000/#t=<jeton>`. Elle se connecte à l'app Mac sur le port 8765
+  (`web/.env.development`). Le jeton est à la fin du lien copié depuis le menu, ou
   `defaults read dev.lukas.macremote token`.
 - `MAC_REMOTE_WEB_DIR=/chemin/vers/out swift run` sert un autre dossier d'interface.
-- Lancée avec `swift run`, l'app hérite des autorisations du Terminal : c'est au Terminal qu'il faut
-  donner l'accès Accessibilité.
 
 > ⚠️ Envoyer des commandes au serveur appuie vraiment sur des touches du Mac et bouge vraiment la
 > souris. Pensez-y avant de tester le protocole à la main.
@@ -76,8 +58,7 @@ Téléphone (page Next.js)  ── WebSocket, Wi-Fi local ──▶  App de la b
 |-----------------|----------------------------------------------------------------------------------|
 | `mac/`          | App macOS (Swift, AppKit, SwiftPM) avec le serveur [FlyingFox](https://github.com/swhitty/FlyingFox) |
 | `web/`          | Interface du téléphone (Next.js en export statique, servie par l'app Mac)        |
-| `.github/`      | Scripts (build, release, icônes, captures) et images du README                   |
-| `Makefile`      | Commandes du projet (`make`, `make release`…)                                    |
+| `.github/`      | Images du README                                                                 |
 
 ### App Mac (MVC)
 
@@ -161,7 +142,7 @@ Accessibilité), `pong`, ou `error` (`bad_token`, `token_revoked`).
 
 Il n'y a pas encore de tests automatisés. Avant de proposer une modification :
 
-- [ ] `make` se termine sans erreur ni avertissement ;
+- [ ] `npm run build` (dans `web/`) et `swift build` (dans `mac/`) se terminent sans erreur ni avertissement ;
 - [ ] le jumelage par QR code fonctionne, et un mauvais jeton est refusé ;
 - [ ] les touches fonctionnent dans un navigateur (YouTube) et dans un lecteur vidéo ;
 - [ ] le trackpad, la saisie et les modificateurs (⌘ verrouillé puis tab) fonctionnent ;
@@ -180,46 +161,7 @@ une version modifiée. En proposant une contribution, vous acceptez qu'elle soit
 distribuée sous cette licence, et que l'auteur puisse l'utiliser, la modifier et la publier dans les
 versions officielles.
 
-## Images du README
+## Versions officielles
 
-```bash
-make run           # l'app doit tourner pour les captures
-make screenshots   # captures dans le mockup d'iPhone 16 Pro (.github/assets/)
-make icons         # icônes de l'app et de la page
-```
-
-`make screenshots` utilise Google Chrome sans fenêtre, avec un profil temporaire. Rien n'est envoyé au Mac
-pendant les captures.
-
-## Publier une version
-
-Pour les mainteneurs, avec un certificat « Developer ID Application » d'Apple.
-
-### Une seule fois : le profil de notarisation
-
-Créez un mot de passe pour app sur [appleid.apple.com](https://appleid.apple.com) (*Connexion et
-sécurité › Mots de passe pour app*), puis enregistrez-le dans le trousseau :
-
-```bash
-xcrun notarytool store-credentials "mac-remote-notary" --apple-id "vous@exemple.com" --team-id "VOTRE_TEAM_ID"
-```
-
-L'identifiant d'équipe est entre parenthèses dans `security find-identity -v -p codesigning`.
-
-### À chaque version
-
-1. Mettez à jour le numéro dans `VERSION`.
-2. Construisez l'installeur :
-   ```bash
-   make release
-   ```
-   Il produit `dist/MacRemoteControl-<version>.dmg` : app universelle (Apple Silicon et Intel), signée
-   Developer ID, notarisée par Apple, ticket agrafé à l'app et à l'installeur.
-3. Committez, taguez et poussez :
-   ```bash
-   git commit -am "Version 0.2.0" && git tag v0.2.0 && git push --follow-tags
-   ```
-4. Publiez la release avec l'installeur :
-   ```bash
-   gh release create v0.2.0 dist/MacRemoteControl-0.2.0.dmg --title "Mac Remote Control 0.2.0" --generate-notes
-   ```
+Les versions officielles (installeur signé et notarisé par Apple) sont publiées par le mainteneur sur
+la page [Releases](../../releases).
