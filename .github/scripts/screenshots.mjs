@@ -1,7 +1,7 @@
-// Captures d'écran du README, au format iPhone 16 Pro, dans le mockup docs/mockup/iphone-16-pro.svg.
+// Captures d'écran du README, au format iPhone 16 Pro, dans le mockup .github/assets/iphone-16-pro.svg.
 //
-//   1. Lancer l'app Mac : ./scripts/build.sh && open "build/Mac Remote Control.app"
-//   2. node scripts/screenshots.mjs  → docs/screenshots/*.png (un iPhone par capture + hero.png)
+//   1. Lancer l'app Mac : make run
+//   2. make screenshots  → .github/assets/*.png (un iPhone par capture + hero.png)
 //
 // Utilise Google Chrome sans fenêtre (profil temporaire, votre Chrome n'est pas touché).
 // Rien n'est envoyé au Mac pendant les captures : la saisie est interceptée dans la page.
@@ -11,9 +11,9 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const OUT = join(ROOT, "docs/screenshots");
-const MOCKUP = readFileSync(join(ROOT, "docs/mockup/iphone-16-pro.svg"), "utf8");
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
+const OUT = join(ROOT, ".github/assets");
+const MOCKUP = readFileSync(join(OUT, "iphone-16-pro.svg"), "utf8");
 const CHROME = process.env.CHROME ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PORT = 9333;
 const TOKEN = execFileSync("defaults", ["read", "dev.lukas.macremote", "token"]).toString().trim();
@@ -171,7 +171,7 @@ try {
     await send("Page.navigate", { url: pathToFileURL(file).href });
     await sleep(700);
     await capture(join(OUT, `${name}.png`));
-    console.log(`✓ docs/screenshots/${name}.png`);
+    console.log(`✓ .github/assets/${name}.png`);
   };
 
   const padding = 120;

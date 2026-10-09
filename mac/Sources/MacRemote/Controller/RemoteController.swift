@@ -82,7 +82,7 @@ final class RemoteController {
 
     private func startServer() {
         guard let webRoot = WebRootLocator.locate() else {
-            serverStatus = .failed("Interface web introuvable (lance scripts/build.sh)")
+            serverStatus = .failed("Interface web introuvable (lance « make »)")
             return
         }
 

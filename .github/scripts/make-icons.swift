@@ -1,4 +1,4 @@
-// Génère les icônes : swift scripts/make-icons.swift
+// Génère les icônes : make icons
 // - web/public/*.png : icônes de la PWA (écran d'accueil de l'iPhone)
 // - mac/Resources/AppIcon.icns : icône de l'app Mac
 // Le dessin : une touche de clavier Mac sombre avec le symbole lecture/pause (F8), comme dans l'interface.

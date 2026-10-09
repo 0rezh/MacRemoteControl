@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/screenshots/icon.png" width="112" alt="">
+<img src=".github/assets/icon.png" width="112" alt="">
 
 # Mac Remote Control
 
@@ -11,7 +11,7 @@ Lecture, son, plein écran, souris et clavier, depuis le canapé.
 
 <br>
 
-<img src="docs/screenshots/hero.png" width="860" alt="Mac Remote Control sur iPhone : saisie de texte avec les modificateurs, touches de fonction du Mac et trackpad">
+<img src=".github/assets/hero.png" width="860" alt="Mac Remote Control sur iPhone : saisie de texte avec les modificateurs, touches de fonction du Mac et trackpad">
 
 </div>
 
@@ -44,8 +44,8 @@ pour chercher un film ou taper un raccourci.
 - **Clair et sombre**, au style d'iOS, selon le réglage du téléphone.
 
 <div align="center">
-<img src="docs/screenshots/touches-sombre.png" width="300" alt="Touches de fonction en mode sombre">
-<img src="docs/screenshots/touches-clair.png" width="300" alt="Touches de fonction en mode clair">
+<img src=".github/assets/touches-sombre.png" width="300" alt="Touches de fonction en mode sombre">
+<img src=".github/assets/touches-clair.png" width="300" alt="Touches de fonction en mode clair">
 </div>
 
 ## Installation
@@ -61,7 +61,7 @@ pour chercher un film ou taper un raccourci.
 
 ### Connecter le téléphone
 
-<img src="docs/screenshots/menu-mac.png" width="300" align="right" alt="Menu de Mac Remote Control avec le QR code de jumelage">
+<img src=".github/assets/menu-mac.png" width="300" align="right" alt="Menu de Mac Remote Control avec le QR code de jumelage">
 
 1. Le téléphone et le Mac doivent être sur **le même réseau Wi-Fi**.
 2. Cliquez sur ⏯ dans la barre des menus : un QR code s'affiche.

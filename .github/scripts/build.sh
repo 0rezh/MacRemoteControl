@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Construit l'interface web, compile l'app Swift et assemble « build/Mac Remote Control.app » (signée).
 #
-#   ./scripts/build.sh            Développement : architecture du Mac, certificat « Apple Development »
-#   ./scripts/build.sh release    Distribution : app universelle (Apple Silicon + Intel),
+#   make            Développement : architecture du Mac, certificat « Apple Development »
+#   make release    Distribution : app universelle (Apple Silicon + Intel),
 #                                 certificat « Developer ID Application », runtime renforcé (notarisation)
 set -euo pipefail
 
 MODE="${1:-dev}"
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 APP="$ROOT/build/Mac Remote Control.app"
 BUNDLE_ID="dev.lukas.macremote"
 VERSION="$(cat "$ROOT/VERSION")"

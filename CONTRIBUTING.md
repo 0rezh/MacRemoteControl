@@ -28,12 +28,20 @@ Bonnes premières contributions : ajouter les raccourcis d'un lecteur vidéo dan
 ```bash
 git clone https://github.com/0rezh/MacRemoteControl.git
 cd MacRemoteControl
-./scripts/build.sh
-open "build/Mac Remote Control.app"
+make run
 ```
 
-`build.sh` construit l'interface web (`web/out`), compile l'app Swift, assemble `build/Mac Remote Control.app`
-et la signe.
+`make` construit l'interface web (`web/out`), compile l'app Swift, assemble `build/Mac Remote Control.app`
+et la signe ; `make run` la lance ensuite.
+
+| Commande           | Rôle                                                                    |
+|--------------------|-------------------------------------------------------------------------|
+| `make`             | Compiler l'app (développement)                                          |
+| `make run`         | Compiler puis lancer l'app                                              |
+| `make release`     | Installeur signé et notarisé (`dist/MacRemoteControl-<version>.dmg`)   |
+| `make icons`       | Régénérer les icônes de l'app et de la page web                         |
+| `make screenshots` | Régénérer les captures du README (l'app doit tourner)                   |
+| `make clean`       | Supprimer les builds                                                    |
 
 ## Développer
 
@@ -68,8 +76,8 @@ Téléphone (page Next.js)  ── WebSocket, Wi-Fi local ──▶  App de la b
 |-----------------|----------------------------------------------------------------------------------|
 | `mac/`          | App macOS (Swift, AppKit, SwiftPM) avec le serveur [FlyingFox](https://github.com/swhitty/FlyingFox) |
 | `web/`          | Interface du téléphone (Next.js en export statique, servie par l'app Mac)        |
-| `scripts/`      | Build, release, icônes et captures du README                                     |
-| `docs/`         | Captures d'écran et mockup d'iPhone du README                                    |
+| `.github/`      | Scripts (build, release, icônes, captures) et images du README                   |
+| `Makefile`      | Commandes du projet (`make`, `make release`…)                                    |
 
 ### App Mac (MVC)
 
@@ -153,7 +161,7 @@ Accessibilité), `pong`, ou `error` (`bad_token`, `token_revoked`).
 
 Il n'y a pas encore de tests automatisés. Avant de proposer une modification :
 
-- [ ] `./scripts/build.sh` se termine sans erreur ni avertissement ;
+- [ ] `make` se termine sans erreur ni avertissement ;
 - [ ] le jumelage par QR code fonctionne, et un mauvais jeton est refusé ;
 - [ ] les touches fonctionnent dans un navigateur (YouTube) et dans un lecteur vidéo ;
 - [ ] le trackpad, la saisie et les modificateurs (⌘ verrouillé puis tab) fonctionnent ;
@@ -175,12 +183,12 @@ versions officielles.
 ## Images du README
 
 ```bash
-./scripts/build.sh && open "build/Mac Remote Control.app"   # l'app doit tourner
-node scripts/screenshots.mjs                     # captures dans le mockup d'iPhone 16 Pro
-swift scripts/make-icons.swift                   # icônes de l'app et de la page
+make run           # l'app doit tourner pour les captures
+make screenshots   # captures dans le mockup d'iPhone 16 Pro (.github/assets/)
+make icons         # icônes de l'app et de la page
 ```
 
-`screenshots.mjs` utilise Google Chrome sans fenêtre, avec un profil temporaire. Rien n'est envoyé au Mac
+`make screenshots` utilise Google Chrome sans fenêtre, avec un profil temporaire. Rien n'est envoyé au Mac
 pendant les captures.
 
 ## Publier une version
@@ -203,7 +211,7 @@ L'identifiant d'équipe est entre parenthèses dans `security find-identity -v -
 1. Mettez à jour le numéro dans `VERSION`.
 2. Construisez l'installeur :
    ```bash
-   ./scripts/release.sh
+   make release
    ```
    Il produit `dist/MacRemoteControl-<version>.dmg` : app universelle (Apple Silicon et Intel), signée
    Developer ID, notarisée par Apple, ticket agrafé à l'app et à l'installeur.

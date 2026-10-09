@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Construit l'installeur à publier sur GitHub : dist/MacRemoteControl-<version>.dmg
-#   1. app universelle signée Developer ID (scripts/build.sh release)
+#   1. app universelle signée Developer ID (.github/scripts/build.sh release)
 #   2. notarisation de l'app par Apple, ticket agrafé à l'app
 #   3. .dmg (glisser l'app dans Applications), signé, notarisé, ticket agrafé
 #
 # Prérequis (une seule fois) : un profil de notarisation dans le trousseau, voir CONTRIBUTING.md.
-#   NOTARY_PROFILE=autre-nom ./scripts/release.sh   pour utiliser un autre profil
+#   NOTARY_PROFILE=autre-nom make release   pour utiliser un autre profil
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 VERSION="$(cat "$ROOT/VERSION")"
 NOTARY_PROFILE="${NOTARY_PROFILE:-mac-remote-notary}"
 APP="$ROOT/build/Mac Remote Control.app"
@@ -27,7 +27,7 @@ notarize() {
   xcrun notarytool submit "$1" --keychain-profile "$NOTARY_PROFILE" --wait
 }
 
-"$ROOT/scripts/build.sh" release
+"$ROOT/.github/scripts/build.sh" release
 IDENTITY="${CODESIGN_IDENTITY:-$(security find-identity -v -p codesigning | awk '/Developer ID Application/ { print $2; exit }')}"
 
 rm -rf "$DIST"
