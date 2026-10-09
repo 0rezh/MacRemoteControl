@@ -164,3 +164,14 @@ veille automatique pendant une pause, mais pas celle du capot.
 
 Bugs, idées et contributions sont les bienvenus. Pour compiler l'app, comprendre son architecture ou
 publier une version, voir [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licence
+
+Mac Remote est un logiciel à code source disponible, sous [PolyForm Strict 1.0.0](LICENSE.md) avec des
+autorisations supplémentaires :
+
+- ✅ télécharger et utiliser l'app, lire le code, le modifier pour vous-même, proposer des contributions ;
+- ❌ vendre l'app ou une version modifiée, en faire un usage commercial, la redistribuer ou la publier
+  sur une boutique d'applications, même gratuitement.
+
+Les versions officielles se téléchargent uniquement depuis la page [Releases](../../releases).

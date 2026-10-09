@@ -26,8 +26,8 @@ Bonnes premières contributions : ajouter les raccourcis d'un lecteur vidéo dan
 ## Compiler et lancer
 
 ```bash
-git clone https://github.com/<vous>/mac-remote.git
-cd mac-remote
+git clone https://github.com/0rezh/MacRemoteControl.git
+cd MacRemoteControl
 ./scripts/build.sh
 open build/MacRemote.app
 ```
@@ -166,6 +166,12 @@ Il n'y a pas encore de tests automatisés. Avant de proposer une modification :
 3. Ouvrez une pull request qui explique le changement et comment vous l'avez testé. Pour un changement
    d'interface, ajoutez une capture d'écran.
 
+Le projet est sous [licence PolyForm Strict avec des autorisations supplémentaires](LICENSE.md) : vous
+pouvez modifier le code pour vous-même et proposer des contributions, mais pas redistribuer l'app ni
+une version modifiée. En proposant une contribution, vous acceptez qu'elle soit intégrée au projet et
+distribuée sous cette licence, et que l'auteur puisse l'utiliser, la modifier et la publier dans les
+versions officielles.
+
 ## Images du README
 
 ```bash
@@ -209,5 +215,3 @@ L'identifiant d'équipe est entre parenthèses dans `security find-identity -v -
    ```bash
    gh release create v0.2.0 dist/MacRemote-0.2.0.dmg --title "Mac Remote 0.2.0" --generate-notes
    ```
-
-Si vous distribuez votre propre build d'un fork, changez `BUNDLE_ID` dans `scripts/build.sh`.
