@@ -1,0 +1,10 @@
+# Build
+build/
+dist/
+mac/.build/
+mac/.swiftpm/
+
+# Éditeurs et système
+.vscode/
+.idea/
+.DS_Store
