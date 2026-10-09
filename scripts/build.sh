@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Construit l'interface web, compile l'app Swift et assemble build/MacRemote.app (signée).
+# Construit l'interface web, compile l'app Swift et assemble « build/Mac Remote Control.app » (signée).
 #
 #   ./scripts/build.sh            Développement : architecture du Mac, certificat « Apple Development »
 #   ./scripts/build.sh release    Distribution : app universelle (Apple Silicon + Intel),
@@ -8,7 +8,7 @@ set -euo pipefail
 
 MODE="${1:-dev}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-APP="$ROOT/build/MacRemote.app"
+APP="$ROOT/build/Mac Remote Control.app"
 BUNDLE_ID="dev.lukas.macremote"
 VERSION="$(cat "$ROOT/VERSION")"
 BUILD_NUMBER="$(git -C "$ROOT" rev-list --count HEAD 2>/dev/null || echo 1)"
@@ -46,8 +46,8 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <plist version="1.0">
 <dict>
   <key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
-  <key>CFBundleName</key><string>Mac Remote</string>
-  <key>CFBundleDisplayName</key><string>Mac Remote</string>
+  <key>CFBundleName</key><string>Mac Remote Control</string>
+  <key>CFBundleDisplayName</key><string>Mac Remote Control</string>
   <key>CFBundleExecutable</key><string>MacRemote</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>

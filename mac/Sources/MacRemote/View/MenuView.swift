@@ -152,7 +152,7 @@ final class MenuView: NSView {
             statusDot.heightAnchor.constraint(equalToConstant: 8),
         ])
 
-        let title = NSTextField(labelWithString: "Mac Remote")
+        let title = NSTextField(labelWithString: "Mac Remote Control")
         title.font = .boldSystemFont(ofSize: NSFont.systemFontSize)
         let titleGroup = NSStackView(views: [statusDot, title])
         titleGroup.spacing = 8
@@ -179,7 +179,7 @@ final class MenuView: NSView {
         titleRow.spacing = 6
 
         let body = NSTextField(wrappingLabelWithString:
-            "Mac Remote doit pouvoir simuler le clavier et la souris. Active-le dans Réglages › Confidentialité et sécurité › Accessibilité.")
+            "Mac Remote Control doit pouvoir simuler le clavier et la souris. Active-le dans Réglages › Confidentialité et sécurité › Accessibilité.")
         body.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         body.textColor = .secondaryLabelColor
         body.preferredMaxLayoutWidth = Self.width - 2 * Self.padding - 20

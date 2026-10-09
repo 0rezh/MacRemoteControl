@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Construit l'installeur à publier sur GitHub : dist/MacRemote-<version>.dmg
+# Construit l'installeur à publier sur GitHub : dist/MacRemoteControl-<version>.dmg
 #   1. app universelle signée Developer ID (scripts/build.sh release)
 #   2. notarisation de l'app par Apple, ticket agrafé à l'app
 #   3. .dmg (glisser l'app dans Applications), signé, notarisé, ticket agrafé
@@ -11,9 +11,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VERSION="$(cat "$ROOT/VERSION")"
 NOTARY_PROFILE="${NOTARY_PROFILE:-mac-remote-notary}"
-APP="$ROOT/build/MacRemote.app"
+APP="$ROOT/build/Mac Remote Control.app"
 DIST="$ROOT/dist"
-DMG="$DIST/MacRemote-$VERSION.dmg"
+DMG="$DIST/MacRemoteControl-$VERSION.dmg"
 
 if xcrun notarytool history --keychain-profile "$NOTARY_PROFILE" >/dev/null 2>&1; then
   NOTARIZE=1
@@ -35,16 +35,16 @@ mkdir -p "$DIST/dmg"
 
 if [ "$NOTARIZE" = 1 ]; then
   echo "▸ Notarisation de l'app"
-  ditto -c -k --keepParent "$APP" "$DIST/MacRemote.zip"
-  notarize "$DIST/MacRemote.zip"
+  ditto -c -k --keepParent "$APP" "$DIST/MacRemoteControl.zip"
+  notarize "$DIST/MacRemoteControl.zip"
   xcrun stapler staple "$APP"
-  rm "$DIST/MacRemote.zip"
+  rm "$DIST/MacRemoteControl.zip"
 fi
 
 echo "▸ Création de l'installeur $DMG"
-ditto "$APP" "$DIST/dmg/MacRemote.app"
+ditto "$APP" "$DIST/dmg/Mac Remote Control.app"
 ln -s /Applications "$DIST/dmg/Applications"
-hdiutil create -volname "Mac Remote $VERSION" -srcfolder "$DIST/dmg" -ov -format UDZO "$DMG" >/dev/null
+hdiutil create -volname "Mac Remote Control $VERSION" -srcfolder "$DIST/dmg" -ov -format UDZO "$DMG" >/dev/null
 rm -rf "$DIST/dmg"
 codesign --force --timestamp --sign "$IDENTITY" "$DMG"
 
@@ -60,4 +60,4 @@ echo "✓ $DMG"
 shasum -a 256 "$DMG"
 echo
 echo "Publier sur GitHub :"
-echo "  gh release create v$VERSION \"$DMG\" --title \"Mac Remote $VERSION\" --generate-notes"
+echo "  gh release create v$VERSION \"$DMG\" --title \"Mac Remote Control $VERSION\" --generate-notes"

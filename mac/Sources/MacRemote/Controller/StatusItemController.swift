@@ -13,7 +13,7 @@ final class StatusItemController: NSObject {
         popover.behavior = .transient
 
         if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "playpause.circle.fill", accessibilityDescription: "Mac Remote")
+            button.image = NSImage(systemSymbolName: "playpause.circle.fill", accessibilityDescription: "Mac Remote Control")
             button.image?.isTemplate = true
             button.target = self
             button.action = #selector(togglePopover(_:))

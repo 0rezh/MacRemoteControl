@@ -11,7 +11,7 @@ final class KeepAwakeManager {
             if isEnabled {
                 activity = ProcessInfo.processInfo.beginActivity(
                     options: [.idleSystemSleepDisabled],
-                    reason: "Mac Remote : rester joignable depuis le téléphone"
+                    reason: "Mac Remote Control : rester joignable depuis le téléphone"
                 )
             } else if let activity {
                 ProcessInfo.processInfo.endActivity(activity)

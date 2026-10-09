@@ -2,7 +2,7 @@
 
 <img src="docs/screenshots/icon.png" width="112" alt="">
 
-# Mac Remote
+# Mac Remote Control
 
 **Votre iPhone devient la télécommande de votre Mac.**<br>
 Lecture, son, plein écran, souris et clavier, depuis le canapé.
@@ -11,17 +11,17 @@ Lecture, son, plein écran, souris et clavier, depuis le canapé.
 
 <br>
 
-<img src="docs/screenshots/hero.png" width="860" alt="Mac Remote sur iPhone : saisie de texte avec les modificateurs, touches de fonction du Mac et trackpad">
+<img src="docs/screenshots/hero.png" width="860" alt="Mac Remote Control sur iPhone : saisie de texte avec les modificateurs, touches de fonction du Mac et trackpad">
 
 </div>
 
-## Pourquoi Mac Remote ?
+## Pourquoi Mac Remote Control ?
 
 Je regarde mes films sur mon Mac, et je suis souvent loin de lui : installé dans le canapé, le Mac
 branché à la télé ou posé à l'autre bout de la pièce. Pour mettre en pause, monter le son ou passer en
 plein écran, il fallait à chaque fois me lever et aller jusqu'au clavier.
 
-Alors j'ai fait Mac Remote : j'ouvre l'app sur mon iPhone et je contrôle le Mac sans bouger. Les
+Alors j'ai fait Mac Remote Control : j'ouvre l'app sur mon iPhone et je contrôle le Mac sans bouger. Les
 touches du clavier Mac sont sur le téléphone, avec un trackpad pour la souris et le clavier de l'iPhone
 pour chercher un film ou taper un raccourci.
 
@@ -50,18 +50,18 @@ pour chercher un film ou taper un raccourci.
 
 ## Installation
 
-1. **Téléchargez** `MacRemote-x.y.z.dmg` depuis la [dernière version](../../releases/latest).
-2. **Ouvrez le fichier** et glissez **Mac Remote** dans le dossier **Applications**.
-3. **Lancez Mac Remote** depuis Applications ou Spotlight. Il n'y a ni fenêtre ni icône dans le Dock :
+1. **Téléchargez** `MacRemoteControl-x.y.z.dmg` depuis la [dernière version](../../releases/latest).
+2. **Ouvrez le fichier** et glissez **Mac Remote Control** dans le dossier **Applications**.
+3. **Lancez Mac Remote Control** depuis Applications ou Spotlight. Il n'y a ni fenêtre ni icône dans le Dock :
    l'app vit dans la barre des menus, sous l'icône ⏯.
-4. **Autorisez l'accessibilité** : cliquez sur ⏯ › *Ouvrir les réglages*, puis activez **Mac Remote**
+4. **Autorisez l'accessibilité** : cliquez sur ⏯ › *Ouvrir les réglages*, puis activez **Mac Remote Control**
    dans *Réglages Système › Confidentialité et sécurité › Accessibilité*. C'est ce qui permet à l'app
    de simuler le clavier et la souris.
-5. Si macOS demande si Mac Remote peut **accepter des connexions entrantes**, cliquez sur *Autoriser*.
+5. Si macOS demande si Mac Remote Control peut **accepter des connexions entrantes**, cliquez sur *Autoriser*.
 
 ### Connecter le téléphone
 
-<img src="docs/screenshots/menu-mac.png" width="300" align="right" alt="Menu de Mac Remote avec le QR code de jumelage">
+<img src="docs/screenshots/menu-mac.png" width="300" align="right" alt="Menu de Mac Remote Control avec le QR code de jumelage">
 
 1. Le téléphone et le Mac doivent être sur **le même réseau Wi-Fi**.
 2. Cliquez sur ⏯ dans la barre des menus : un QR code s'affiche.
@@ -72,8 +72,8 @@ pour chercher un film ou taper un raccourci.
 Le téléphone ne trouve pas le Mac ? Dans le menu, passez de *Nom .local* à *Adresse IP* et scannez à
 nouveau le QR code (c'est fréquent sur Android).
 
-Pour lancer Mac Remote à chaque démarrage : *Réglages Système › Général › Ouverture*, puis ajoutez
-Mac Remote.
+Pour lancer Mac Remote Control à chaque démarrage : *Réglages Système › Général › Ouverture*, puis ajoutez
+Mac Remote Control.
 
 <br clear="right">
 
@@ -133,15 +133,15 @@ veille automatique pendant une pause, mais pas celle du capot.
 ## Dépannage
 
 **Le téléphone affiche « Mac injoignable »**
-- Vérifiez que le téléphone et le Mac sont sur le même Wi-Fi, et que Mac Remote est lancé (icône ⏯).
+- Vérifiez que le téléphone et le Mac sont sur le même Wi-Fi, et que Mac Remote Control est lancé (icône ⏯).
 - Dans le menu, passez sur *Adresse IP* et scannez à nouveau le QR code.
 - Certains Wi-Fi (hôtel, réseau invité) empêchent les appareils de communiquer entre eux. Utilisez le
   partage de connexion du téléphone à la place.
 - Si le pare-feu de macOS est activé : *Réglages Système › Réseau › Pare-feu › Options*, autorisez
-  Mac Remote.
+  Mac Remote Control.
 
 **Les touches ne font rien sur le Mac**
-- Vérifiez l'autorisation *Accessibilité*. Après une mise à jour de Mac Remote, désactivez puis
+- Vérifiez l'autorisation *Accessibilité*. Après une mise à jour de Mac Remote Control, désactivez puis
   réactivez l'app dans cette liste.
 
 **Avancer ou reculer ne marche pas dans mon lecteur vidéo**
@@ -152,12 +152,12 @@ veille automatique pendant une pause, mais pas celle du capot.
 
 ## Confidentialité et sécurité
 
-- Mac Remote fonctionne **uniquement sur votre réseau local** : l'app du Mac envoie la page au
+- Mac Remote Control fonctionne **uniquement sur votre réseau local** : l'app du Mac envoie la page au
   téléphone et reçoit ses commandes directement. Aucun serveur externe, aucun compte, aucune donnée
   collectée.
 - Le jumelage se fait par QR code : le lien contient un jeton secret, sans lequel personne ne peut
   piloter le Mac. *Nouveau jeton* dans le menu déconnecte tous les téléphones.
-- ⚠️ La connexion n'est pas chiffrée (HTTP sur le réseau local). Utilisez Mac Remote sur un réseau de
+- ⚠️ La connexion n'est pas chiffrée (HTTP sur le réseau local). Utilisez Mac Remote Control sur un réseau de
   confiance, chez vous par exemple, et évitez d'y taper des mots de passe.
 
 ## Contribuer
@@ -167,7 +167,7 @@ publier une version, voir [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-Mac Remote est un logiciel à code source disponible, sous [PolyForm Strict 1.0.0](LICENSE.md) avec des
+Mac Remote Control est un logiciel à code source disponible, sous [PolyForm Strict 1.0.0](LICENSE.md) avec des
 autorisations supplémentaires :
 
 - ✅ télécharger et utiliser l'app, lire le code, le modifier pour vous-même, proposer des contributions ;

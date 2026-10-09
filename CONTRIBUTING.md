@@ -1,4 +1,4 @@
-# Contribuer à Mac Remote
+# Contribuer à Mac Remote Control
 
 Merci de votre intérêt ! Ce guide explique comment compiler l'app, comment elle est organisée et
 comment proposer une modification.
@@ -29,10 +29,10 @@ Bonnes premières contributions : ajouter les raccourcis d'un lecteur vidéo dan
 git clone https://github.com/0rezh/MacRemoteControl.git
 cd MacRemoteControl
 ./scripts/build.sh
-open build/MacRemote.app
+open "build/Mac Remote Control.app"
 ```
 
-`build.sh` construit l'interface web (`web/out`), compile l'app Swift, assemble `build/MacRemote.app`
+`build.sh` construit l'interface web (`web/out`), compile l'app Swift, assemble `build/Mac Remote Control.app`
 et la signe.
 
 ## Développer
@@ -175,7 +175,7 @@ versions officielles.
 ## Images du README
 
 ```bash
-./scripts/build.sh && open build/MacRemote.app   # l'app doit tourner
+./scripts/build.sh && open "build/Mac Remote Control.app"   # l'app doit tourner
 node scripts/screenshots.mjs                     # captures dans le mockup d'iPhone 16 Pro
 swift scripts/make-icons.swift                   # icônes de l'app et de la page
 ```
@@ -205,7 +205,7 @@ L'identifiant d'équipe est entre parenthèses dans `security find-identity -v -
    ```bash
    ./scripts/release.sh
    ```
-   Il produit `dist/MacRemote-<version>.dmg` : app universelle (Apple Silicon et Intel), signée
+   Il produit `dist/MacRemoteControl-<version>.dmg` : app universelle (Apple Silicon et Intel), signée
    Developer ID, notarisée par Apple, ticket agrafé à l'app et à l'installeur.
 3. Committez, taguez et poussez :
    ```bash
@@ -213,5 +213,5 @@ L'identifiant d'équipe est entre parenthèses dans `security find-identity -v -
    ```
 4. Publiez la release avec l'installeur :
    ```bash
-   gh release create v0.2.0 dist/MacRemote-0.2.0.dmg --title "Mac Remote 0.2.0" --generate-notes
+   gh release create v0.2.0 dist/MacRemoteControl-0.2.0.dmg --title "Mac Remote Control 0.2.0" --generate-notes
    ```

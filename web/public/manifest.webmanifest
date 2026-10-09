@@ -1,6 +1,6 @@
 {
-  "name": "Mac Remote",
-  "short_name": "Mac Remote",
+  "name": "Mac Remote Control",
+  "short_name": "Mac Remote Control",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",

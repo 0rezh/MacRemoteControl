@@ -64,20 +64,20 @@ export default function RemotePage() {
             <span className="dot" aria-hidden />
             {STATUS_LABEL[status]}
           </p>
-          <h1 className="large-title">{state?.app ?? "Mac Remote"}</h1>
+          <h1 className="large-title">{state?.app ?? "Mac Remote Control"}</h1>
           <p className="subtitle">{state ? `Raccourcis ${state.profile.toLowerCase()}` : "En attente du Mac"}</p>
         </header>
 
         {!live && (
           <p className="notice">
             <WifiOff size={20} strokeWidth={2} aria-hidden />
-            <span>Vérifie que le téléphone est sur le même Wi-Fi que le Mac et que Mac Remote est ouvert.</span>
+            <span>Vérifie que le téléphone est sur le même Wi-Fi que le Mac et que Mac Remote Control est ouvert.</span>
           </p>
         )}
         {live && state && !state.accessibility && (
           <p className="notice notice--warning">
             <TriangleAlert size={20} strokeWidth={2} aria-hidden />
-            <span>Sur le Mac, active Mac Remote dans Réglages › Confidentialité et sécurité › Accessibilité.</span>
+            <span>Sur le Mac, active Mac Remote Control dans Réglages › Confidentialité et sécurité › Accessibilité.</span>
           </p>
         )}
 
@@ -142,8 +142,8 @@ function Pairing({ expired }: { expired: boolean }) {
       <h1 className="pairing__title">{expired ? "Lien expiré" : "Jumeler avec le Mac"}</h1>
       <p className="pairing__text">
         {expired
-          ? "Ce lien n’est plus valide. Scanne le nouveau QR code affiché par Mac Remote."
-          : "Sur le Mac, clique sur l’icône Mac Remote dans la barre des menus, puis scanne le QR code avec l’appareil photo."}
+          ? "Ce lien n’est plus valide. Scanne le nouveau QR code affiché par Mac Remote Control."
+          : "Sur le Mac, clique sur l’icône Mac Remote Control dans la barre des menus, puis scanne le QR code avec l’appareil photo."}
       </p>
     </main>
   );

@@ -4,10 +4,10 @@ Copyright © 2026 Lukas Renaud
 
 Required Notice: Copyright © 2026 Lukas Renaud (https://github.com/0rezh/MacRemoteControl)
 
-Mac Remote est un logiciel à **code source disponible**, distribué sous la **PolyForm Strict License 1.0.0**
+Mac Remote Control est un logiciel à **code source disponible**, distribué sous la **PolyForm Strict License 1.0.0**
 (texte complet ci-dessous), avec les autorisations supplémentaires suivantes.
 
-*Mac Remote is **source-available** software, licensed under the **PolyForm Strict License 1.0.0**
+*Mac Remote Control is **source-available** software, licensed under the **PolyForm Strict License 1.0.0**
 (full text below), with the following additional permissions.*
 
 ## Autorisations supplémentaires

@@ -1,6 +1,6 @@
 // Captures d'écran du README, au format iPhone 16 Pro, dans le mockup docs/mockup/iphone-16-pro.svg.
 //
-//   1. Lancer l'app Mac : ./scripts/build.sh && open build/MacRemote.app
+//   1. Lancer l'app Mac : ./scripts/build.sh && open "build/Mac Remote Control.app"
 //   2. node scripts/screenshots.mjs  → docs/screenshots/*.png (un iPhone par capture + hero.png)
 //
 // Utilise Google Chrome sans fenêtre (profil temporaire, votre Chrome n'est pas touché).

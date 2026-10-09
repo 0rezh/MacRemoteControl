@@ -2,12 +2,12 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mac Remote",
-  applicationName: "Mac Remote",
+  title: "Mac Remote Control",
+  applicationName: "Mac Remote Control",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "Mac Remote",
+    title: "Mac Remote Control",
     statusBarStyle: "default",
   },
   icons: {

@@ -140,6 +140,6 @@ final class KeyboardManager {
     /// Rallume l'écran s'il s'était mis en veille pendant une pause.
     private func wakeDisplay() {
         var assertionID: IOPMAssertionID = 0
-        IOPMAssertionDeclareUserActivity("Mac Remote" as CFString, kIOPMUserActiveLocal, &assertionID)
+        IOPMAssertionDeclareUserActivity("Mac Remote Control" as CFString, kIOPMUserActiveLocal, &assertionID)
     }
 }
