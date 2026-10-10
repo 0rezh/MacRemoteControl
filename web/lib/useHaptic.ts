@@ -4,25 +4,12 @@ import { useCallback } from "react";
 
 /**
  * Petit retour haptique à chaque appui, pour sentir la commande sans regarder l'écran.
- * Android : navigator.vibrate. iOS 18+ : basculer un interrupteur (<input switch>) déclenche le moteur
- * haptique ; il est créé à chaque appui, caché dans <head>, puis retiré.
+ * Android : navigator.vibrate. iOS n'a pas cette API et ne vibre plus sur commande JS depuis iOS 26.5 :
+ * là-bas, c'est le HapticSwitch posé sur chaque touche qui vibre, au relâchement.
  */
 export function useHaptic() {
   const trigger = useCallback(() => {
-    if (typeof navigator.vibrate === "function") {
-      navigator.vibrate(12);
-      return;
-    }
-    const label = document.createElement("label");
-    label.ariaHidden = "true";
-    label.style.display = "none";
-    const input = document.createElement("input");
-    input.type = "checkbox";
-    input.setAttribute("switch", "");
-    label.appendChild(input);
-    document.head.appendChild(label);
-    label.click();
-    label.remove();
+    if (typeof navigator.vibrate === "function") navigator.vibrate(12);
   }, []);
 
   return { trigger };

@@ -123,6 +123,7 @@ web/
 ├── components/
 │   ├── KeyFace.tsx           Dessus des touches F7 à F12 (symboles et légendes)
 │   ├── HoldButton.tsx        Touche déclenchée à l'appui, avec répétition
+│   ├── HapticSwitch.tsx      Interrupteur invisible qui fait vibrer l'iPhone sous le doigt
 │   ├── TypingPad.tsx         Zone de saisie (clavier de l'iPhone) et modificateurs
 │   └── Trackpad.tsx          Trackpad et boutons de clic
 └── lib/

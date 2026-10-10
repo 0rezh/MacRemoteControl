@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CircleX, Keyboard } from "lucide-react";
+import { HapticSwitch } from "@/components/HapticSwitch";
 import { HoldButton } from "@/components/HoldButton";
 import type { KeyboardMessage, KeyModifier } from "@/lib/useRemote";
 
@@ -297,6 +298,7 @@ export function TypingPad({ send, onFeedback, disabled }: Props) {
             <span className="keycap__led" aria-hidden />
             <span className="keycap__symbol">{symbol}</span>
             <span className="keycap__word-legend">{legend}</span>
+            <HapticSwitch disabled={disabled} />
           </button>
         ))}
       </div>

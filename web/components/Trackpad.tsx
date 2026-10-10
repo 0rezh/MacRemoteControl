@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { HapticSwitch } from "@/components/HapticSwitch";
 import type { PointerMessage } from "@/lib/useRemote";
 
 type Props = {
@@ -201,6 +202,7 @@ function MouseKey({
       }}
     >
       <span className="keycap__label">{label}</span>
+      <HapticSwitch disabled={disabled} />
     </button>
   );
 }

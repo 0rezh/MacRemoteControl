@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import { HapticSwitch } from "@/components/HapticSwitch";
 
 type Props<Action> = {
   action: Action;
@@ -62,6 +63,7 @@ export function HoldButton<Action>({ action, label, onAction, repeat, disabled, 
       }}
     >
       {children}
+      <HapticSwitch disabled={disabled} />
     </button>
   );
 }

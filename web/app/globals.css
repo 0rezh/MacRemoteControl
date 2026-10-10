@@ -274,6 +274,19 @@ button:disabled {
   grid-column: span 3;
 }
 
+/* Interrupteur haptique (HapticSwitch) : il recouvre toute la touche pour recevoir le doigt.
+   opacity: 0 et pas display: none, apparence native gardée : sans rendu, iOS ne joue pas le tick. */
+.haptic-switch {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
 .deck--typing {
   display: flex;
   flex: 1;
