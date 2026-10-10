@@ -21,6 +21,12 @@ const MAX_ACCELERATION = 3.2;
 const SCROLL_GAIN = 1.6;
 
 type TrackedPointer = { x: number; y: number; t: number };
+type Gesture = { maxPointers: number; travel: number; startTime: number };
+
+/** Un toucher court, sans glisser, est un clic. */
+function isTap(g: Gesture, timeStamp: number) {
+  return g.travel < TAP_SLOP && timeStamp - g.startTime < TAP_MAX_MS;
+}
 
 /**
  * Trackpad façon MacBook :
@@ -29,10 +35,30 @@ type TrackedPointer = { x: number; y: number; t: number };
 export function Trackpad({ send, onFeedback, disabled }: Props) {
   const surfaceRef = useRef<HTMLDivElement>(null);
   const pointers = useRef(new Map<number, TrackedPointer>());
-  const gesture = useRef({ maxPointers: 0, travel: 0, startTime: 0 });
+  const gesture = useRef<Gesture>({ maxPointers: 0, travel: 0, startTime: 0 });
   const pending = useRef({ dx: 0, dy: 0, sx: 0, sy: 0, frame: 0 });
 
   useEffect(() => () => cancelAnimationFrame(pending.current.frame), []);
+
+  /**
+   * L'interrupteur haptique qui recouvre la surface vibrerait à chaque doigt levé, même après un glissé.
+   * On annule ses touchers pour ne garder le tick que quand le dernier doigt se lève sur un clic :
+   * touchstart annulé, il ne suit plus le doigt ; touchend annulé, il ne bascule pas.
+   */
+  useEffect(() => {
+    const surface = surfaceRef.current;
+    if (!surface) return;
+    const onTouchStart = (event: TouchEvent) => event.preventDefault();
+    const onTouchEnd = (event: TouchEvent) => {
+      if (event.targetTouches.length > 0 || !isTap(gesture.current, event.timeStamp)) event.preventDefault();
+    };
+    surface.addEventListener("touchstart", onTouchStart, { passive: false });
+    surface.addEventListener("touchend", onTouchEnd);
+    return () => {
+      surface.removeEventListener("touchstart", onTouchStart);
+      surface.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
 
   const flush = () => {
     const p = pending.current;
@@ -114,8 +140,7 @@ export function Trackpad({ send, onFeedback, disabled }: Props) {
     if (pointers.current.size > 0) return;
 
     const g = gesture.current;
-    const isTap = event.type === "pointerup" && g.travel < TAP_SLOP && event.timeStamp - g.startTime < TAP_MAX_MS;
-    if (isTap && !disabled) {
+    if (event.type === "pointerup" && isTap(g, event.timeStamp) && !disabled) {
       onFeedback();
       send({ type: "click", button: g.maxPointers >= 2 ? "right" : "left" });
     }
@@ -139,6 +164,7 @@ export function Trackpad({ send, onFeedback, disabled }: Props) {
           <li><b>Un doigt</b> Déplacer · Toucher pour cliquer</li>
           <li><b>Deux doigts</b> Défiler · Toucher pour le clic droit</li>
         </ul>
+        <HapticSwitch disabled={disabled} />
       </div>
 
       <div className="trackpad__buttons">
