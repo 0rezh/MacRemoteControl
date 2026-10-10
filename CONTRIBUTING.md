@@ -34,14 +34,15 @@ make run
 `make` construit l'interface web (`web/out`), compile l'app Swift, assemble `build/Mac Remote Control.app`
 et la signe ; `make run` la lance ensuite.
 
-| Commande           | Rôle                                                                    |
-|--------------------|-------------------------------------------------------------------------|
-| `make`             | Compiler l'app (développement)                                          |
-| `make run`         | Compiler puis lancer l'app                                              |
-| `make release`     | Installeur signé et notarisé (`dist/MacRemoteControl-<version>.dmg`)   |
-| `make icons`       | Régénérer les icônes de l'app et de la page web                         |
-| `make screenshots` | Régénérer les captures du README (l'app doit tourner)                   |
-| `make clean`       | Supprimer les builds                                                    |
+| Commande              | Rôle                                                                 |
+|-----------------------|----------------------------------------------------------------------|
+| `make`                | Compiler l'app (développement)                                       |
+| `make run`            | Compiler puis lancer l'app                                           |
+| `make release`        | Installeur signé et notarisé (`dist/MacRemoteControl-<version>.dmg`) |
+| `make icons`          | Régénérer les icônes de l'app et de la page web                      |
+| `make dmg-background` | Régénérer le fond de la fenêtre de l'installeur                      |
+| `make screenshots`    | Régénérer les captures du README (l'app doit tourner)                |
+| `make clean`          | Supprimer les builds                                                 |
 
 ## Développer
 
@@ -183,9 +184,10 @@ versions officielles.
 ## Images du README
 
 ```bash
-make run           # l'app doit tourner pour les captures
-make screenshots   # captures dans le mockup d'iPhone 16 Pro (.github/assets/)
-make icons         # icônes de l'app et de la page
+make run             # l'app doit tourner pour les captures
+make screenshots     # captures dans le mockup d'iPhone 16 Pro (.github/assets/)
+make icons           # icônes de l'app et de la page
+make dmg-background  # fond de la fenêtre de l'installeur
 ```
 
 `make screenshots` utilise Google Chrome sans fenêtre, avec un profil temporaire. Rien n'est envoyé au Mac
@@ -214,7 +216,10 @@ L'identifiant d'équipe est entre parenthèses dans `security find-identity -v -
    make release
    ```
    Il produit `dist/MacRemoteControl-<version>.dmg` : app universelle (Apple Silicon et Intel), signée
-   Developer ID, notarisée par Apple, ticket agrafé à l'app et à l'installeur.
+   Developer ID, notarisée par Apple, ticket agrafé à l'app et à l'installeur. À l'ouverture, l'installeur
+   montre l'app, le dossier Applications et une flèche sur le fond de `.github/assets/dmg-background.png`.
+   C'est le Finder qui fait cette mise en page : la première fois, macOS demande d'autoriser le Terminal
+   à contrôler le Finder.
 3. Committez, taguez et poussez :
    ```bash
    git commit -am "Version 0.2.0" && git tag v0.2.0 && git push --follow-tags

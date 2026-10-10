@@ -2,7 +2,7 @@
 # Construit l'installeur à publier sur GitHub : dist/MacRemoteControl-<version>.dmg
 #   1. app universelle signée Developer ID (.github/scripts/build.sh release)
 #   2. notarisation de l'app par Apple, ticket agrafé à l'app
-#   3. .dmg (glisser l'app dans Applications), signé, notarisé, ticket agrafé
+#   3. .dmg (glisser l'app dans Applications, sur le fond de .github/assets/), signé, notarisé, ticket agrafé
 #
 # Prérequis (une seule fois) : un profil de notarisation dans le trousseau, voir CONTRIBUTING.md.
 #   NOTARY_PROFILE=autre-nom make release   pour utiliser un autre profil
@@ -31,7 +31,7 @@ notarize() {
 IDENTITY="${CODESIGN_IDENTITY:-$(security find-identity -v -p codesigning | awk '/Developer ID Application/ { print $2; exit }')}"
 
 rm -rf "$DIST"
-mkdir -p "$DIST/dmg"
+mkdir -p "$DIST"
 
 if [ "$NOTARIZE" = 1 ]; then
   echo "▸ Notarisation de l'app"
@@ -42,10 +42,7 @@ if [ "$NOTARIZE" = 1 ]; then
 fi
 
 echo "▸ Création de l'installeur $DMG"
-ditto "$APP" "$DIST/dmg/Mac Remote Control.app"
-ln -s /Applications "$DIST/dmg/Applications"
-hdiutil create -volname "Mac Remote Control $VERSION" -srcfolder "$DIST/dmg" -ov -format UDZO "$DMG" >/dev/null
-rm -rf "$DIST/dmg"
+"$ROOT/.github/scripts/make-dmg.sh" "$APP" "$DMG"
 codesign --force --timestamp --sign "$IDENTITY" "$DMG"
 
 if [ "$NOTARIZE" = 1 ]; then

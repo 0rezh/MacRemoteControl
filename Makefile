@@ -1,4 +1,4 @@
-.PHONY: build run release icons screenshots clean
+.PHONY: build run release icons dmg-background screenshots clean
 
 build:
 	.github/scripts/build.sh
@@ -11,6 +11,9 @@ release:
 
 icons:
 	swift .github/scripts/make-icons.swift .
+
+dmg-background:
+	swift .github/scripts/make-dmg-background.swift .
 
 screenshots:
 	node .github/scripts/screenshots.mjs
